@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { btFormActions } from '../store/BTForm/slice'
 
-export const ProductTable = () => {
-  const { productList } = useSelector((state) => state.btForm)
+export const StudentTable = () => {
+  const { studentList } = useSelector((state) => state.btForm)
 
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState("")
@@ -13,7 +13,7 @@ export const ProductTable = () => {
       <h3 className="text-danger">Tìm Kiếm Sinh Viên</h3>
       <input
         type="text"
-        className="form-control mb-3"
+        className="form-control mb-3 w-25"
         onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue}
       />
@@ -28,30 +28,30 @@ export const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          {productList.length &&
-            productList
-              .filter((product) => {
+          {studentList.length &&
+            studentList
+              .filter((student) => {
                 if (searchValue === '') {
-                  return product
+                  return student
                 } else if (
-                  product.name.toLowerCase().includes(searchValue.toLowerCase())
+                  student.name.toLowerCase().includes(searchValue.toLowerCase())
                 ) {
-                  return product
+                  return student
                 }
               })
-              .map((product) => {
+              .map((student) => {
                 return (
-                  <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.name}</td>
-                    <td>{product.email}</td>
-                    <td>{product.phone}</td>
+                  <tr key={student.id}>
+                    <td>{student.id}</td>
+                    <td>{student.name}</td>
+                    <td>{student.email}</td>
+                    <td>{student.phone}</td>
                     <td style={{ width: 120 }}>
                       <button
                         className="btn btn-danger"
                         onClick={() => {
                           confirm('Xác Nhận Xóa')
-                            ? dispatch(btFormActions.deleteProduct(product.id))
+                            ? dispatch(btFormActions.deleteStudent(student.id))
                             : ''
                         }}
                       >
@@ -60,7 +60,7 @@ export const ProductTable = () => {
                       <button
                         className="btn btn-success ms-3"
                         onClick={() => {
-                          dispatch(btFormActions.setProductEdit(product))
+                          dispatch(btFormActions.setStudentEdit(student))
                         }}
                       >
                         <i className="fa-solid fa-pen-to-square"></i>

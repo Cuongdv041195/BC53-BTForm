@@ -1,14 +1,14 @@
 // rafc
 import React from 'react'
-import { ProductForm } from './ProductForm'
-import { ProductTable } from './ProductTable'
+import { StudentForm } from './StudentForm'
+import { StudentTable } from './StudentTable'
 
 export const BTForm = () => {
     return (
         <div className="container mt-3">
             <h1>BTForm</h1>
-            <ProductForm />
-            <ProductTable />
+            <StudentForm />
+            <StudentTable />
         </div>
     )
 }

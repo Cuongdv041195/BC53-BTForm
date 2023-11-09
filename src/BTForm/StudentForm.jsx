@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { btFormActions } from '../store/BTForm/slice'
 
-export const ProductForm = () => {
+export const StudentForm = () => {
   const [formValue, setFormValue] = useState({
     id: '',
     name: '',
@@ -19,16 +19,16 @@ export const ProductForm = () => {
   })
 
   const dispatch = useDispatch()
-  const { productList } = useSelector((state) => state.btForm)
-  const { productEdit } = useSelector((state) => state.btForm)
+  const { studentList } = useSelector((state) => state.btForm)
+  const { studentEdit } = useSelector((state) => state.btForm)
 
   const validate = (name, value) => {
     switch (name) {
       case 'id':
-        const index = productList.findIndex((product) => product.id === value)
-        if (value.trim() === '' && !productEdit) {
+        const index = studentList.findIndex((product) => product.id === value)
+        if (value.trim() === '' && !studentEdit) {
           return 'Vui lòng nhập thông tin'
-        } else if (index !== -1 && !productEdit) {
+        } else if (index !== -1 && !studentEdit) {
           return 'ID đã tồn tại!'
         } else {
           return ''
@@ -80,12 +80,12 @@ export const ProductForm = () => {
   }
 
   useEffect(() => {
-    if (productEdit) {
+    if (studentEdit) {
       
       // set error về giá trị ban đầu
-      setFormValue(productEdit)
+      setFormValue(studentEdit)
     }
-  }, [productEdit])
+  }, [studentEdit])
  
   return (
     <div>
@@ -108,12 +108,12 @@ export const ProductForm = () => {
             return
           }
 
-          if (productEdit) {
+          if (studentEdit) {
             // console.log('ev: ', ev)
             // dispatch action Edit
-            dispatch(btFormActions.editProduct(formValue))
+            dispatch(btFormActions.editStudent(formValue))
           } else {
-            dispatch(btFormActions.addProduct(formValue))
+            dispatch(btFormActions.addStudent(formValue))
           }
 
           setFormValue({
@@ -141,8 +141,8 @@ export const ProductForm = () => {
               // }}
               onChange={handleFormValue('id')}
               // onBlur={handleFormValue('id')}
-              // value={productEdit?.id}
-              disabled={formValue.id === productEdit?.id}
+              // value={studentEdit?.id}
+              disabled={formValue.id === studentEdit?.id}
               value={formValue.id}
             />
             {formError.id && (
@@ -164,7 +164,7 @@ export const ProductForm = () => {
               // }}
               onChange={handleFormValue('name')}
               // onBlur={handleFormValue('name')}
-              // value={productEdit?.name}
+              // value={studentEdit?.name}
               value={formValue.name}
             />
             {formError.name && (
@@ -206,7 +206,7 @@ export const ProductForm = () => {
         </div>
 
         <div className="mt-4">
-          {productEdit ? (
+          {studentEdit ? (
             <button className="btn btn-info">Update</button>
           ) : (
             <button className="btn btn-success">Create</button>
