@@ -29,7 +29,7 @@ export const StudentForm = () => {
         if (value.trim() === '' && !studentEdit) {
           return 'Vui lòng nhập thông tin'
         } else if (index !== -1 && !studentEdit) {
-          return 'ID đã tồn tại!'
+          return 'Mã SV đã tồn tại!'
         } else {
           return ''
         }
